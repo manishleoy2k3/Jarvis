@@ -39,7 +39,7 @@ public class ExecutionParameters {
 	 * Setup constant parameter from Mobile config parameter
 	 */
 	public void setupReportConfigParameter() {
-		ReportConstants.HTML_REPORT_TILE = FrameworkConstants.REPORTCONFIG.get("HTML_REPORT_TILE");
+		ReportConstants.HTML_REPORT_TITLE = FrameworkConstants.REPORTCONFIG.get("HTML_REPORT_TILE");
 		ReportConstants.SCREEN_SHOT = getBooleanStatus(FrameworkConstants.REPORTCONFIG.get("SCREEN_SHOT"));
 	}
 	

@@ -1,4 +1,4 @@
-package com.api.framework.utility.files;
+package com.qaninjas.framework.utility.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
@@ -13,29 +14,36 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import junit.framework.Assert;
+
 public class UpdateExcel {
 
 	private Workbook workBook = null;
 	private Sheet workSheet = null;
 	private Row row;
 	private Cell cell;
-		
-	public Sheet getSheet(String filePath, String sheetName) {
+	private static Logger logger = Logger.getLogger(UpdateExcel.class);
 	
+	public Sheet getSheet(String filePath, String sheetName) {
 		File file = new File(filePath);
 		try {
 			FileInputStream fileInputStream = new FileInputStream(file);
 			workBook = WorkbookFactory.create(fileInputStream);
 			workSheet = workBook.getSheet(sheetName);
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Not able to retrieve sheet.");
+			Assert.fail("Not able to retrieve sheetName " + e.getMessage());
 		}
 		return workSheet;
 	}
 	
 	public void setCellData(String filePath, String sheetName, String result, int rowNum, int colNum) {
 		workSheet = getSheet(filePath, sheetName);
+		FileOutputStream fileOutputStream = null;
 		row = workSheet.getRow(rowNum);
+		if(row == null) {
+			row = workSheet.createRow(rowNum);
+		}
 		cell = row.getCell(colNum);
 		if(cell == null) {
 			cell = row.createCell(colNum);
@@ -44,16 +52,40 @@ public class UpdateExcel {
 			cell.setCellValue(result);
 		}
 		try {
-			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+			fileOutputStream = new FileOutputStream(filePath);
 			workBook.write(fileOutputStream);
 			fileOutputStream.flush();
 			fileOutputStream.close();
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Not able to set cell data sheet.");
+			Assert.fail("Not able to set cell data sheet. " + e.getMessage());		
+		}finally {
+			fileOutputStream = null;
 		}
 	}
 	
+	public void addSheet(String fileName, String sheetName, String columns) {
+		try {
+			workBook = WorkbookFactory.create(new FileInputStream(fileName));
+			for(int sheetIndex = 0; sheetIndex < workBook.getNumberOfSheets(); sheetIndex++) {
+				if(workBook.getSheetName(sheetIndex).equals(sheetName)) {
+					workBook.close();
+					logger.info(sheetName + " is already created in workbook");
+				}
+				workSheet = workBook.createSheet(sheetName);
+				addReportHeader(columns);
+				workBook.write(new FileOutputStream(fileName));
+			}
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	public void addReportHeader(String cellNames) {
+		
+	}
+
 	private String getCellValue(Cell cell) {
 
 		String strCellValue = "";

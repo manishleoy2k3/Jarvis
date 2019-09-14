@@ -20,9 +20,7 @@ import com.qaninjas.framework.utility.report.ExtentReportConstant;
 
 public interface IGeneric {
 
-	static Initialize init = Initialize.getInstance();
-	IAddParameter addParameter(String paramKey);
-	
+	static Initialize init = Initialize.getInstance();	
 	RequestBuilder requestBuilder = RequestBuilder.getRequestBuilder();
 	ResponseBuilder responseBuilder = ResponseBuilder.getResponseBuilder();
 	AddParameter addParameter = AddParameter.getInstance();

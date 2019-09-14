@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,22 +13,25 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import junit.framework.Assert;
+
 public class ReadExcel {
 
 	private Workbook workBook = null;
 	private Sheet workSheet = null;
 	private String[][] data;
 	private Sheet sheet;
+	private static Logger logger = Logger.getLogger(ReadExcel.class);
 	
 	public Sheet getSheet(String filePath, String sheetName) {
-	
 		File file = new File(filePath);
 		try {
 			FileInputStream fileInputStream = new FileInputStream(file);
 			workBook = WorkbookFactory.create(fileInputStream);
 			workSheet = workBook.getSheet(sheetName);
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Not able to retrieve sheet.");
+			Assert.fail("Not able to retrieve sheetName " + e.getMessage());
 		}
 		return workSheet;
 	}
@@ -46,8 +50,9 @@ public class ReadExcel {
 			}
 			return data;
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			logger.error("Not able to retrieve sheet.");
+			Assert.fail("Not able to retrieve sheetName " + e.getMessage());
+			return data;
 		}
 	}
 
@@ -129,7 +134,7 @@ public class ReadExcel {
 			}
 			return strCellValue.trim();
 		}catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error while parsing cell value.");
 			return "";
 		}
 	}
@@ -144,9 +149,10 @@ public class ReadExcel {
 		return iNumber;
 	}
 
-	/*public Object[][] getDataWithMap(String filepath, String sheetName){
+	public Object[][] getDataWithMap(String filepath, String sheetName){
+		
 		return data;
-	}*/
+	}
 	
 	public Object[][] getDataWithMapBasedOnKey(String filePath, String sheetName, String key){
 		sheet = getSheet(filePath, sheetName);

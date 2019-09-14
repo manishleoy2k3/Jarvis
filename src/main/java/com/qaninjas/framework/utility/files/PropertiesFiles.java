@@ -1,9 +1,11 @@
 package com.qaninjas.framework.utility.files;
 
+import java.util.HashMap;
+
 public class PropertiesFiles {
 
-	public Object readProperties(String configfile) {
-		// TODO Auto-generated method stub
+	public HashMap<String, String> readProperties(String filePath) {
+
 		return null;
 	}
 
