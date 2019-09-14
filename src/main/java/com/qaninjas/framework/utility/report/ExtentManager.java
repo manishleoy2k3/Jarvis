@@ -38,7 +38,6 @@ public class ExtentManager {
 		if(FrameworkConstants.HTML_REPORT) {
 			if(extent != null)
 				return extent;
-				
 			extent = new ExtentReports();
 			extent.attachReporter(GetHtmlReporter());
 			ExtentReportConstant.getInstance().SetExtent(extent);
