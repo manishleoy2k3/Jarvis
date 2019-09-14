@@ -1,4 +1,4 @@
-package com.api.framework.utility.files;
+package com.qaninjas.framework.utility.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
