@@ -1,5 +1,7 @@
 package com.qaninjas.mobile.app;
 
-public class MobileAppElements {
+import com.qaninjas.elements.AbstractElements;
+
+public class MobileAppElements extends AbstractElements{
 
 }

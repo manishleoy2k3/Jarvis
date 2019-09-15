@@ -1,5 +1,7 @@
 package com.qaninjas.mobile.browser;
 
-public class MobileBrowserElements {
+import com.qaninjas.elements.AbstractElements;
+
+public class MobileBrowserElements extends AbstractElements{
 
 }
