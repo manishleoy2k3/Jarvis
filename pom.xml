@@ -1,57 +1,59 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>jarvis</groupId>
-  <artifactId>jarvis</artifactId>
-  <version>0.0.1</version>
-  <name>JARVIS</name>
-  <description>Test Automation Framework for Desktop browser, mobile and API testing automation</description>
-  <url>http://maven.apache.org</url>
-  <profiles>
-	<profile>
-		<id>mobileBrowser</id>
-		<activation>
-			<property>
-				<name>platform</name>
-				<value>mobile</value>
-			</property>
-		</activation>
-		
-		<build>
-			<plugins>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.22.0</version>
-					<configuration>
-						<fork>true</fork>
-						<suiteXmlFiles>
-							<suiteXmlFile>src\test\resources\xml\desktopbrowser.xml</suiteXmlFile>
-						</suiteXmlFiles>
-					</configuration>
-				</plugin>
-				
-			</plugins>
-			<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.2</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		</build>
-	</profile>
-  </profiles>
-  
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>jarvis</groupId>
+	<artifactId>jarvis</artifactId>
+	<version>0.0.1</version>
+	<name>JARVIS</name>
+	<description>Test Automation Framework for Desktop browser, mobile and API testing automation</description>
+	<url>http://maven.apache.org</url>
+	<profiles>
+		<profile>
+			<id>mobileBrowser</id>
+			<activation>
+				<property>
+					<name>platform</name>
+					<value>mobile</value>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<source>1.8</source>
+							<target>1.8</target>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.22.0</version>
+						<configuration>
+							<fork>true</fork>
+							<suiteXmlFiles>
+								<suiteXmlFile>src\test\resources\xml\desktopbrowser.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>sonar-maven-plugin</artifactId>
+							<version>3.2</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -156,6 +158,11 @@
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
 			<version>5.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>21.0</version>
 		</dependency>
 	</dependencies>
 	<properties></properties>
