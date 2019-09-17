@@ -2,7 +2,8 @@ package com.qaninjas.framework.api.interfaces;
 
 import java.util.List;
 
-import org.apache.xmlbeans.impl.soap.SOAPMessage;
+import javax.xml.soap.SOAPMessage;
+
 
 public interface IValidateResponse {
 

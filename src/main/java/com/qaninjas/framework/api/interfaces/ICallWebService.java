@@ -1,6 +1,6 @@
 package com.qaninjas.framework.api.interfaces;
 
-import org.apache.xmlbeans.impl.soap.SOAPMessage;
+import javax.xml.soap.SOAPMessage;
 
 public interface ICallWebService {
 

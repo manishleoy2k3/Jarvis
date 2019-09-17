@@ -18,6 +18,10 @@ import com.qaninjas.framework.api.interfaces.IExecute;
 import com.qaninjas.framework.api.interfaces.ISetRequestBody;
 import com.qaninjas.framework.api.interfaces.ISetURL;
 import com.qaninjas.framework.api.interfaces.IVerify;
+
+import io.restassured.specification.QueryableRequestSpecification;
+import io.restassured.specification.SpecificationQuerier;
+
 import com.qaninjas.framework.api.interfaces.IGeneric;
 import com.qaninjas.framework.api.interfaces.IServices;
 import com.qaninjas.framework.Initialize;
@@ -109,21 +113,9 @@ public class AbstractRestAssuredAPI implements IServices, IGeneric{
 			logger.debug("Path Parameter to be removed is: " + temp);
 			requestBuilder.getRequestSpecBuilder().removePathParam(temp);
 		}
-		addParameter.clearPathParamList();		
+		addParameter.clearPathParamList();
 	}
 	
-	/**
-	 * @return the init
-	 */
-	public static Initialize getInit() {
-		return init;
-	}
-
-	/**
-	 * @param init the init to set
-	 */
-	public static void setInit(Initialize init) {
-		AbstractRestAssuredAPI.init = init;
-	}
+	public QueryableRequestSpecification queryableReq = SpecificationQuerier.query(requestBuilder.getRequestSpecBuilder().build());
 
 }
