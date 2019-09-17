@@ -7,6 +7,7 @@ import com.qaninjas.framework.constants.FrameworkConstants;
 public class DesktopFactory {
 
 	private WebDriver driver;
+	
 	private enum platform{
 		APP, BROWSER
 	};

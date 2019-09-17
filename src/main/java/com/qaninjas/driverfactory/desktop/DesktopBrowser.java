@@ -73,7 +73,7 @@ public class DesktopBrowser extends AbstractBrowser{
 	@Override
 	public WebDriver getPluginConnection() {
 		setBrowserCapabilities();
-		driver = remote.getRemotePlugin(capabilities);
+		driver = remote.getRemotePlugIn(capabilities);
 		return null;
 	}
 	
