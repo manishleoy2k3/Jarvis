@@ -35,7 +35,7 @@ public class Table implements ITable{
 		logger.debug("Get Table data of element locator " + elementLocator);
 		browserSync.waitForElement(elementLocator);
 		tableData = driver.findElements(elementLocator);
-		return null;
+		return tableData;
 	}
 
 }

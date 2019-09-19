@@ -24,6 +24,7 @@ public class Dropdown implements IDropdown{
 	protected Synchronization sync = Synchronization.getInstance();
 	private Report report = Report.getInstance();
 	protected Locator locator = Locator.getInstance();
+	protected FindElement find = FindElement.getInstance();
 	
 	protected SeleniumUtility utility = SeleniumUtility.getInstance();
 	
@@ -42,7 +43,7 @@ public class Dropdown implements IDropdown{
 
 	public List<String> getAllOptions() {
 		sync.waitForElement(locator.getLocator());
-		Select options = new Select(driver.findElement(locator.getLocator()));
+		Select options = new Select(find.findElementWithAccessibility(locator.getLocator()));
 		
 		optionsList = options.getOptions();
 		List<String> listOfOptions = utility.convertWebElementToString(optionsList);
@@ -53,7 +54,7 @@ public class Dropdown implements IDropdown{
 
 	public void selectbyVisibleText(String value) {
 		sync.waitForElement(locator.getLocator());
-		Select options = new Select(driver.findElement(locator.getLocator()));
+		Select options = new Select(find.findElementWithAccessibility(locator.getLocator()));
 		
 		options.selectByVisibleText(value);
 		
@@ -63,7 +64,7 @@ public class Dropdown implements IDropdown{
 
 	public void selectbyIndex(int index) {
 		sync.waitForElement(locator.getLocator());
-		Select options = new Select(driver.findElement(locator.getLocator()));
+		Select options = new Select(find.findElementWithAccessibility(locator.getLocator()));
 		
 		options.selectByIndex(index);
 		
@@ -73,7 +74,7 @@ public class Dropdown implements IDropdown{
 
 	public void selectbyValue(String value) {
 		sync.waitForElement(locator.getLocator());
-		Select options = new Select(driver.findElement(locator.getLocator()));
+		Select options = new Select(find.findElementWithAccessibility(locator.getLocator()));
 		
 		options.selectByValue(value);
 		
@@ -83,11 +84,10 @@ public class Dropdown implements IDropdown{
 
 	public String getFirstSelectedOption() {
 		sync.waitForElement(locator.getLocator());
-		Select options = new Select(driver.findElement(locator.getLocator()));
+		Select options = new Select(find.findElementWithAccessibility(locator.getLocator()));
 		
 		String firstValue = options.getFirstSelectedOption().getText();
 		report.log("Selected value by Value", firstValue, Status.PASS);
 		return firstValue;
-	}
-	
+	}	
 }

@@ -2,21 +2,18 @@ package com.qaninjas.accessibility.selenium;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.Status;
-import com.qaninjas.driverfactory.DriverFactory;
+import com.qaninjas.accessibility.framework.AccessibilityLibrary;
 import com.qaninjas.framework.Report;
-import com.qaninjas.selenium.Synchronization;
 
 public class Elements {
 
 	private static Elements instance = null;
-	protected WebDriver driver = DriverFactory.getInstance().getDriver();
 	private static  Logger logger = Logger.getLogger(Elements.class);
-	
-	protected Synchronization sync = Synchronization.getInstance();
 	private Report report = Report.getInstance();
+	protected FindElement find = FindElement.getInstance();
+	protected AccessibilityLibrary accLib = AccessibilityLibrary.getInstance();	
 	
 	protected Elements() {
 		
@@ -31,50 +28,44 @@ public class Elements {
 
 	public void sendKeys(By elementLocator, String value, String description) {
 		clear(elementLocator);
-		driver.findElement(elementLocator).sendKeys(value);
+		find.findElementWithAccessibility(elementLocator).sendKeys(value);
 		logger.debug("Enter value " + value + "" + elementLocator);
 		report.log(description, value, Status.PASS);
 	}
 	
 	private void clear(By elementLocator) {
-		sync.waitForElement(elementLocator);
-		driver.findElement(elementLocator).clear();	
+		find.driver.findElement(elementLocator).clear();	
 	}
 
 	public void click(By elementLocator, String description) {
-		sync.waitForElement(elementLocator);
-		driver.findElement(elementLocator).click();
+		find.driver.findElement(elementLocator).click();
 		report.log(description, "", Status.PASS);
 	}
 
 	public String getText(By elementLocator) {
-		sync.waitForElement(elementLocator);
-		logger.debug("Element locator get Text... " + driver.findElement(elementLocator).getText());
-		return driver.findElement(elementLocator).getText();
+		logger.debug("Element locator get Text... " + find.driver.findElement(elementLocator).getText());
+		return find.findElementWithAccessibility(elementLocator).getText();
 	}
 	
 	public String getAttribute(By elementLocator, String attribute) {
-		sync.waitForElement(elementLocator);
-		logger.debug("Element locator get Text... " + driver.findElement(elementLocator).getAttribute(attribute));
-		return driver.findElement(elementLocator).getAttribute(attribute);
+		logger.debug("Element locator get Text... " + find.driver.findElement(elementLocator).getAttribute(attribute));
+		return find.findElementWithAccessibility(elementLocator).getAttribute(attribute);
 	}
 	
 	public boolean isEnabled(By elementLocator) {
-		sync.waitForElement(elementLocator);
-		return driver.findElement(elementLocator).isEnabled();
+		return find.findElementWithAccessibility(elementLocator).isEnabled();
 	}
 	
 	public boolean isDisplayed(By elementLocator) {
-		sync.waitForElement(elementLocator);
-		return driver.findElement(elementLocator).isDisplayed();
+		return find.findElementWithAccessibility(elementLocator).isDisplayed();
 	}
 	
 	public boolean isSelected(By elementLocator) {
-		sync.waitForElement(elementLocator);
-		return driver.findElement(elementLocator).isSelected();
+		return find.findElementWithAccessibility(elementLocator).isSelected();
 	}
 	
 	public void getURL(String url) {
-		driver.get(url);
+		find.driver.get(url);
+		accLib.pageLevelAccessibilityTest();
 	}
 }
