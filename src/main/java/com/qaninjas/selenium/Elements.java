@@ -35,7 +35,7 @@ public class Elements {
 		report.log(description, value, Status.PASS);
 	}
 	
-	private void clear(By elementLocator) {
+	public void clear(By elementLocator) {
 		sync.waitForElement(elementLocator);
 		driver.findElement(elementLocator).clear();	
 	}

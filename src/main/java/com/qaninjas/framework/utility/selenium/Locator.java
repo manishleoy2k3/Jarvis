@@ -14,4 +14,9 @@ public class Locator {
 		return null;
 	}
 
+	public void setLocator(By elementLocator) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

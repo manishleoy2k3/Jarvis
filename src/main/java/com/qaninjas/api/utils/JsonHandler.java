@@ -50,13 +50,18 @@ public class JsonHandler implements IGeneric{
 		try {
 			FileWriter file = new FileWriter(fileName);
 			file.write(jsonString);
-			//file.close();
+			file.close();
 			logger.info("Json value written to File: " + jsonString);
-			reportConstant.getParentTestNode().log(Status.PASS, jsonString);
+			if(reportConstant.getParentTestNode() != null){
+				reportConstant.getParentTestNode().log(Status.PASS, jsonString);
+			}else {
+				reportConstant.setParentTestNode("Write to JSON file");
+				reportConstant.getParentTestNode().log(Status.PASS, jsonString);
+			}
+			
 		} catch(Exception e) {
 			logger.error("Exception found: "+ e.getMessage());
-			logger.debug(e.getStackTrace());
-			reportConstant.getParentTestNode().log(Status.FAIL, e.getMessage());
+			util.failTestCase(e.getMessage(), e.getMessage());
 		}
 	}
 	
@@ -69,8 +74,7 @@ public class JsonHandler implements IGeneric{
 			reportConstant.getParentTestNode().log(Status.PASS, jsonPath);
 		} catch(Exception e) {
 			logger.error("Exception found: "+ e.getMessage());
-			logger.debug(e.getStackTrace());
-			reportConstant.getParentTestNode().log(Status.FAIL, e.getMessage());
+			util.failTestCase(e.getMessage(), e.getMessage());
 		}
 		return jsonvalue;
 	}

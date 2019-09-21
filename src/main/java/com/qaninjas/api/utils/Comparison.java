@@ -320,18 +320,26 @@ public class Comparison implements IGeneric{
 				break;
 			case FLOAT:
 				try {
-					assertThat("Field Validation", (Float) expectedValue, lessThanOrEqualTo((Float) actualValue));
+					assertThat("Field Validation successful. Expected : LessOrEqualTo ", (Float) expectedValue, lessThanOrEqualTo((Float) actualValue));
 					logger.info("Field validation successful. Expected: lessOrEqualsTo : "+ (Float) expectedValue + "Actual : "+ (Float) actualValue);
 					reportConstant.getParentTestNode().log(Status.PASS, "Expected : lessOrEqualsTo : " + expectedValue.toString() + "Actual : " + actualValue.toString());
 					
 				} catch(AssertionError a) {
 					logger.error("Field validation failed. Expected : lessOrEqualsTo :"+ (Float) expectedValue + "Actual : " + (Float) actualValue);
 					reportConstant.getParentTestNode().log(Status.FAIL, "Expected : lessOrEqualsTo : " + expectedValue.toString() + "Actual : " + actualValue.toString());
+				} catch(Exception e) {
+					util.failTestCase("Assertion Failed", "Expected : lessOrEqualTo " + null + "Actual: " + null);
 				}
-				break;
-						
-			} // switch case ends here
+			}
 	 }
+	
+	private <T extends Comparable<T>> void lessComparison(T expectedValue, T actualValue) {
+		assertThat("Field Validation", actualValue, lessThanOrEqualTo(expectedValue));
+	}
+	
+	private <T extends Comparable<T>> void greaterComparison(T expectedValue, T actualValue) {
+		assertThat("Field Validation", actualValue, greaterThanOrEqualTo(expectedValue));
+	}
 	
 	public void contains(String expectedValue, String actualValue) {
 		
@@ -341,8 +349,9 @@ public class Comparison implements IGeneric{
 			reportConstant.getParentTestNode().log(Status.PASS, "Expected : contains : " + expectedValue.toString() + "Actual : " + actualValue.toString());
 		} catch(AssertionError a) {
 			logger.error("Field validation failed. Expected : contains :"+ expectedValue + "Actual : " + actualValue);
-			reportConstant.getParentTestNode().log(Status.FAIL, "Expected : contains : " + expectedValue.toString() + "Actual : " + actualValue.toString());
-		}
-		
+			util.failTestCase("Assertion Failed", "Expected : contains " + expectedValue + "Actual: " + actualValue);
+		} catch(Exception e) {
+			util.failTestCase("Assertion Failed", "Expected : contains " + null + "Actual: " + null);
+		}		
 	}
 }
