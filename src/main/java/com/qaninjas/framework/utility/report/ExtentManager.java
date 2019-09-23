@@ -5,12 +5,9 @@ import java.net.InetAddress;
 import org.apache.log4j.Logger;
 
 import com.aventstack.extentreports.AnalysisStrategy;
-import com.aventstack.extentreports.ExtentReporter;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.google.common.net.InetAddresses;
-import com.qaninjas.accessibility.framework.GetHeadLessBrowser;
 import com.qaninjas.framework.constants.FrameworkConstants;
 import com.qaninjas.framework.constants.ReportConstants;
 

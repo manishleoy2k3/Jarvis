@@ -4,19 +4,26 @@ import org.openqa.selenium.By;
 
 public class Locator {
 
-	public static Locator getInstance() {
-		// TODO Auto-generated method stub
-		return null;
+	private By elementLocator;
+	private static Locator instance = null;
+	
+	protected Locator() {
+		
 	}
-
+	
+	public static Locator getInstance() {
+		if(null == instance) {
+			instance = new Locator();
+		}
+		return instance;
+	}
+		
 	public By getLocator() {
-		// TODO Auto-generated method stub
-		return null;
+		return elementLocator;
 	}
 
 	public void setLocator(By elementLocator) {
-		// TODO Auto-generated method stub
-		
+		this.elementLocator = elementLocator;
 	}
 
 }
