@@ -18,18 +18,10 @@ import org.w3c.dom.NodeList;
 import com.qaninjas.api.implementation.CallWebService;
 import com.qaninjas.api.implementation.ValidateResponse;
 import com.qaninjas.framework.Initialize;
-import com.qaninjas.framework.api.interfaces.IAddHeadersParameters;
-import com.qaninjas.framework.api.interfaces.IAddPathParameters;
-import com.qaninjas.framework.api.interfaces.IAddQueryParameters;
 import com.qaninjas.framework.api.interfaces.ICallWebService;
-import com.qaninjas.framework.api.interfaces.IExecute;
 import com.qaninjas.framework.api.interfaces.IGeneric;
-import com.qaninjas.framework.api.interfaces.IServices;
-import com.qaninjas.framework.api.interfaces.ISetRequestBody;
-import com.qaninjas.framework.api.interfaces.ISetURL;
 import com.qaninjas.framework.api.interfaces.ISoapServices;
 import com.qaninjas.framework.api.interfaces.IValidateResponse;
-import com.qaninjas.framework.api.interfaces.IVerify;
 
 public class AbstractSoapAPI implements ISoapServices, IGeneric{
 

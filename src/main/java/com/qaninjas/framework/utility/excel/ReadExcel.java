@@ -101,7 +101,7 @@ public class ReadExcel {
 		}
 	}
 	
-	private String getCellValue(Cell cell) {
+	public String getCellValue(Cell cell) {
 
 		String strCellValue = "";
 		try {
@@ -149,8 +149,24 @@ public class ReadExcel {
 		return iNumber;
 	}
 
-	public Object[][] getDataWithMap(String filepath, String sheetName){
+	public HashMap<String, HashMap<String, String>> getDataWithMap(String filePath, String sheetName){
+		sheet = getSheet(filePath, sheetName);
+		int totalColumns = sheet.getRow(0).getLastCellNum();
+		int totalRows = sheet.getLastRowNum();
 		
+		HashMap<String, HashMap<String, String>> data = new HashMap<String, HashMap<String,String>>();
+		HashMap<String, String> map = new HashMap<String, String>();
+		String headerName[] = getColumnHeaders(filePath, sheetName);
+		
+		for(int rowCount = 1; rowCount <= totalRows; rowCount++) {
+			map = new HashMap<String, String>();
+			for(int columnCount = 1; columnCount <= totalColumns; columnCount++) {
+				map.put(headerName[columnCount], getCellValue(sheet.getRow(rowCount).getCell(columnCount)));
+				if(columnCount == totalColumns - 1) {
+					data.put(getCellValue(sheet.getRow(rowCount).getCell(0)), map);
+				}
+			}
+		}
 		return data;
 	}
 	

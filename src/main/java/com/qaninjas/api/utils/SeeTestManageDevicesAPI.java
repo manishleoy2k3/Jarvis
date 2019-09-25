@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.qaninjas.framework.constants.FrameworkConstants;
 import com.qaninjas.framework.utility.DateTime;
 
@@ -18,7 +17,6 @@ import com.qaninjas.framework.utility.DateTime;
 public class SeeTestManageDevicesAPI {
 
 	private static  Logger logger = Logger.getLogger(SeeTestManageDevicesAPI.class);
-	//private DateTime getDate  = new DateTime();
 	private String urlBase = FrameworkConstants.MOBILECONFIG.get("CLOUD_URL");
 	private String user = FrameworkConstants.MOBILECONFIG.get("USERNAME");
 	private String password = FrameworkConstants.MOBILECONFIG.get("PASSWORD");

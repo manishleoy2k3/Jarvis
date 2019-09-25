@@ -4,10 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.qaninjas.driverfactory.DriverFactory;
 import com.qaninjas.framework.interfaces.ITable;
 import com.qaninjas.selenium.Synchronization;
 
