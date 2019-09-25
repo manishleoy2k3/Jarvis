@@ -110,7 +110,7 @@ public class MobileApp extends AbstractApp{
 	@Override
 	public WebDriver getPluginConnection() {
 		setAppDesiredCapabilities();
-		driver = remote.getRemotePlugin(capabilities);
+		driver = remote.getRemotePlugIn(capabilities);
 		return driver;	}
 
 	public WebDriver getDriver() {

@@ -182,9 +182,7 @@ public class JsonHandler implements IGeneric{
 			writeJsonToFile(updatedJson.toString(), jsonSourceFileName);
 			logger.info("File modified successfully and the updated Json is : " + updatedJson);
 			return updatedJson.toString();
-			
 		}
 		return updatedJson.toString();
 	}
-
 }
