@@ -1,5 +1,7 @@
 package com.qaninjas.test.ui;
 
-public class TestDesktopBrowser {
+import com.qaninjas.elements.AbstractAccessibilityElements;
+
+public class TestDesktopBrowser extends AbstractAccessibilityElements{
 
 }
