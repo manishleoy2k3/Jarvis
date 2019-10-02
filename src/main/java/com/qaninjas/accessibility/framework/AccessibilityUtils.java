@@ -159,7 +159,7 @@ public class AccessibilityUtils {
 
 	private void insertDataToExcel(String voilations) {
 		getWCAG.openHeadLessBrowser();
-		ArrayList<String> guidelines = new ArrayList<>();
+		ArrayList<String> guidelines = new ArrayList<String>();
 		String voilation, description, link, impact, resolutions, sheetName, guideline, axApi;
 		
 		String filePath = ReportConstants.VOILATIONS_LOCATION + "VoilationReport.xlsx";

@@ -1,7 +1,10 @@
 package com.qaninjas.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
+import com.qaninjas.driverfactory.DriverFactory;
+import com.qaninjas.framework.Initialize;
 import com.qaninjas.framework.interfaces.IAlert;
 import com.qaninjas.framework.interfaces.IDropdown;
 import com.qaninjas.framework.interfaces.IFrame;
@@ -10,6 +13,7 @@ import com.qaninjas.framework.interfaces.ISynchronization;
 import com.qaninjas.framework.interfaces.ITable;
 import com.qaninjas.framework.interfaces.ITouchAction;
 import com.qaninjas.framework.interfaces.IWindows;
+import com.qaninjas.framework.utility.report.ExtentManager;
 import com.qaninjas.framework.utility.selenium.Locator;
 import com.qaninjas.selenium.Alerts;
 import com.qaninjas.selenium.Dropdown;
@@ -23,8 +27,12 @@ import com.qaninjas.selenium.Windows;
 
 public class AbstractAccessibilityElements extends AbstractElements{
 
+	private static Initialize init = Initialize.getInstance();
+	private WebDriver driver = DriverFactory.getInstance().getDriver();
 	protected Elements field = Elements.getInstance();
 	protected Locator locator = Locator.getInstance();
+	protected Synchronization browserSync = Synchronization.getInstance();
+	protected ExtentManager extentManager = ExtentManager.getInstance();
 	
 	public IDropdown dropdown(By elementLocator) {
 		locator.setLocator(elementLocator);

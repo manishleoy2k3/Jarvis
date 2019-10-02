@@ -20,9 +20,9 @@ public class FrameworkConstants {
 	public static final String EXECUTOR_NAME = System.getProperty("user.name");
 	
 	public static String EXECUTION_MODE = "";
-	public static String TARGET = "";
+	public static String TARGET = "browser";
 	public static Integer STEP_COUNTER = 0;
-	public static String EXECUTION_ON = "";
+	public static String EXECUTION_ON = "desktop";
 	
 	public static boolean HTML_REPORT = false;
 	public static boolean ACCESSIBILITY_TEST = false;

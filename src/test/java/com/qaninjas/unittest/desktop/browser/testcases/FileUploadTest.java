@@ -13,7 +13,7 @@ import com.qaninjas.framework.utility.report.ExtentManager;
 import com.qaninjas.test.BaseBrowserTest;
 import com.qaninjas.unittest.mobile.browser.pages.UnitTestPages;
 
-@Listeners(com.qaninjas.framework.utility.selenium.DotTestListener.class)
+//@Listeners(com.qaninjas.framework.utility.selenium.DotTestListener.class)
 public class FileUploadTest extends BaseBrowserTest implements UnitTestPages {
 
 	private WebDriver driver = DriverFactory.getInstance().getDriver();

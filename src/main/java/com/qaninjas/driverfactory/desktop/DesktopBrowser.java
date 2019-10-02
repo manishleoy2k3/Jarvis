@@ -26,15 +26,16 @@ public class DesktopBrowser extends AbstractBrowser{
 	private enum browsers{
 		CHROME, FIREFOX, IE
 	};
+	
 	protected DesktopBrowser() {
-		
+		getPluginConnection();
 	}
 	
-	public static DesktopBrowser getInstance() {
+	public static synchronized DesktopBrowser getInstance() {
 		if(null == instance) {
 			instance = new DesktopBrowser();
 		}
-		return null;
+		return instance;
 	}
 
 	public WebDriver getDriver() {
@@ -57,7 +58,7 @@ public class DesktopBrowser extends AbstractBrowser{
 			default:
 				break;
 		}
-		return null;
+		return capabilities;
 	}
 
 	@Override
@@ -67,14 +68,14 @@ public class DesktopBrowser extends AbstractBrowser{
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().setScriptTimeout(SetUpConstants.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		return null;
+		return driver;
 	}
 
 	@Override
 	public WebDriver getPluginConnection() {
 		setBrowserCapabilities();
 		driver = remote.getRemotePlugIn(capabilities);
-		return null;
+		return driver;
 	}
 	
 	private DesiredCapabilities getIECapabilities(DesiredCapabilities ieCapabilities) {
@@ -100,12 +101,14 @@ public class DesktopBrowser extends AbstractBrowser{
 	}
 	
 	private DesiredCapabilities getChromeCapabilities(DesiredCapabilities chromeCapabilities) {
-		file = new File(classLoader.getResource(FrameworkConstants.DESKTOPCONFIG.get("CHROME_DRIVER")).getFile());
-		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+		//file = new File(classLoader.getResource(FrameworkConstants.DESKTOPCONFIG.get("CHROME_DRIVER")).getFile());
+		//System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+		
+		System.setProperty("webdriver.chrome.driver", "G:\\workspace\\Jarvis\\src\\test\\resources\\lib\\chromedriver.exe");
+		
 		chromeCapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		chromeCapabilities.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
 		chromeCapabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-		
 		return chromeCapabilities;
 	}
 	

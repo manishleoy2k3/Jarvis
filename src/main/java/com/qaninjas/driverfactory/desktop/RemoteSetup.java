@@ -1,11 +1,13 @@
 package com.qaninjas.driverfactory.desktop;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -64,6 +66,9 @@ public class RemoteSetup extends AbstractRemoteSetup{
 				driver = new InternetExplorerDriver(capabilities);
 				break;
 			case CHROME:
+				//ChromeOptions options = new ChromeOptions();
+				//options.addArguments("start-maximized");
+				//driver = new ChromeDriver(options);
 				driver = new ChromeDriver(capabilities);
 				break;
 			case FIREFOX:
